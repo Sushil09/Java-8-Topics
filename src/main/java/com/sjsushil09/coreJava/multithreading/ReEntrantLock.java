@@ -1,10 +1,11 @@
 package com.sjsushil09.coreJava.multithreading;
 
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ReEntrantLock {
     public static void main(String[] args) {
-        ReentrantLock reentrantLock = new ReentrantLock();
+        Lock reentrantLock = new ReentrantLock();
 
         TestReEntrantLock reEntrantLock = new TestReEntrantLock();
 
@@ -22,15 +23,15 @@ public class ReEntrantLock {
 }
 
 class TestReEntrantLock {
-    public void testReEntrantLock(ReentrantLock reentrantLock) {
+    public void testReEntrantLock(Lock lock) {
         try {
-            reentrantLock.lock();
+            lock.lock(); //acquiring the lock
             System.out.println("Lock is held by this thread:" + Thread.currentThread().getName());
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         } finally {
-            reentrantLock.unlock();
+            lock.unlock(); //releasing the lock
         }
     }
 }
